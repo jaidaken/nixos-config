@@ -15,7 +15,7 @@
     enable = true;
     ohMyZsh = {
       enable = true;
-      plugins = [ "git" "thefuck" ];
+      plugins = [ "git" "sudo" "docker" "kubectl" ];
       theme = "robbyrussell";
     };
   };
