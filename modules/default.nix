@@ -2,7 +2,7 @@
 # ==============================================================================
 # NixOS System Configuration
 # ==============================================================================
-# This is the root configuration file that manages both system-level (core) and 
+# This is the root configuration file that manages both system-level (core) and
 # user-level (home) configurations.
 #
 # Core (/modules/core):
@@ -66,7 +66,7 @@
 #
 # Author: Kenan Pelit
 # ==============================================================================
-{ inputs, nixpkgs, self, username, host, lib, ... }:
+{ inputs, nixpkgs, self, host, lib, ... }:
 {
  imports = [
    ./core           # System-level configuration (NixOS)

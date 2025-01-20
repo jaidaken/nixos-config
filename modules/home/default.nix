@@ -1,10 +1,10 @@
-{ config, lib, pkgs, inputs, username, host, ... }:
+{ config, lib, pkgs, inputs, host, ... }:
 
 {
-  imports = [ 
-    
-	inputs.home-manager.nixosModules.home-manager 
-	
+  imports = [
+
+	inputs.home-manager.nixosModules.home-manager
+
 	# =============================================================================
     # Desktop and UI
     # =============================================================================
@@ -43,7 +43,7 @@
     # System Integration
     # =============================================================================
     #./xdg           # XDG specifications and portals
-	
+
   ];
 
 }
