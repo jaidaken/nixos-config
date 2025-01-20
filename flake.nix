@@ -13,37 +13,28 @@
       submodules = true;
     };
 
-    hypr-contrib = {
-      url = "github:hyprwm/contrib";
-    };
-
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-    };
-    
-    hyprmag = {
-      url = "github:SIMULATAN/hyprmag";
-    };
+    hypr-contrib.url = "github:hyprwm/contrib";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprmag.url = "github:SIMULATAN/hyprmag";
 
   };
 
-  outputs = inputs@{ self, nixpkgs, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+  outputs = { self, nixpkgs, home-manager, ... }:
+    let
       system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
-      modules = [
-	./hosts/default/default.nix
+      pkgs = import nixpkgs { inherit system; };
+    in {
+      nixosConfigurations = {
+        hostname = pkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/default/default.nix
+            home-manager.nixosModules.home-manager
+          ];
+        };
+      };
 
-	inputs.home-manager.nixosModules.default
-	{
-    nix = {
       settings.experimental-features = [ "nix-command" "flakes" ];
     };
-	}
-
-	./modules
-
-	];
-    };
-  };
 }

@@ -5,7 +5,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "jaidaken" = import ./../../../users/jaidaken/default.nix;
+      "jaidaken" = import ./../../home/default.nix;
     };
   };
 }

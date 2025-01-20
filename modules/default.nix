@@ -66,10 +66,10 @@
 #
 # Author: Kenan Pelit
 # ==============================================================================
-{ inputs, nixpkgs, self, host, lib, ... }:
+{ config, lib, pkgs, inputs, self, host,... }:
 {
- imports = [
-   ./core           # System-level configuration (NixOS)
-   ./home           # User-level configuration (Home Manager)
- ];
+  imports = [
+    ./core           # System-level configuration (NixOS)
+    ./home           # User-level configuration (Home Manager)
+  ];
 }
