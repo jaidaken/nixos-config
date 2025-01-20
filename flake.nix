@@ -19,32 +19,52 @@
 
   };
 
-outputs =
-    { nixpkgs, self, ... }@inputs:
-    let
-      username = "jaidaken";
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      lib = nixpkgs.lib;
-    in
-    {
-      nixosConfigurations = {
-        desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/nixos/default.nix
-            ./modules
-            inputs.home-manager.nixosModules.default
-          ];
-          specialArgs = {
-            host = "nixos";
-            inherit self inputs username;
-          };
-        };
-      };
-    };
-}
+# outputs =
+#     { nixpkgs, self, ... }@inputs:
+#     let
+#       username = "jaidaken";
+#       system = "x86_64-linux";
+#       pkgs = import nixpkgs {
+#         inherit system;
+#         config.allowUnfree = true;
+#       };
+#       lib = nixpkgs.lib;
+#     in
+#     {
+#       nixosConfigurations = {
+#         desktop = nixpkgs.lib.nixosSystem {
+#           inherit system;
+#           modules = [
+#             ./hosts/nixos/default.nix
+#             ./modules
+#             inputs.home-manager.nixosModules.default
+#           ];
+#           specialArgs = {
+#             host = "nixos";
+#             inherit self inputs username;
+#           };
+#         };
+#       };
+#     };
+# }
 
+  outputs = inputs@{ self, nixpkgs, ... }: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = {inherit inputs;};
+      modules = [
+	./hosts/default/default.nix
+
+	inputs.home-manager.nixosModules.default
+	{
+	  nix = {
+	    settings.experimental-features = [ "nix-command" "flakes" ];
+	  };
+	}
+
+	./modules
+
+	];
+    };
+  };
+}
