@@ -34,7 +34,11 @@ outputs =
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./hosts/nixos/default.nix ];
+          modules = [
+            ./hosts/nixos/default.nix
+            ./modules
+            inputs.home-manager.nixosModules.default
+          ];
           specialArgs = {
             host = "nixos";
             inherit self inputs username;
@@ -43,6 +47,4 @@ outputs =
       };
     };
 }
-
-
 
