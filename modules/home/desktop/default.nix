@@ -3,7 +3,7 @@
 {
  imports = [
    #./gtk
-   ./hyprland
+   #./hyprland
    #./hyprsunset
    #./qt
    #./rofi
