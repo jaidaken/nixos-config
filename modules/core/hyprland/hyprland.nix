@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     # swww
     # inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     # hyprpicker
