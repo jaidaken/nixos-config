@@ -11,11 +11,12 @@
     gzip
   ];
 
-	programs.zsh.enable = true;
-
-	programs.zsh.ohMyZsh = {
+  programs.zsh = {
     enable = true;
-    plugins = [ "git" "sudo" "docker" "kubectl" ];
+    ohMyZsh = {
+      enable = true;
+      plugins = [ "git" "thefuck" ];
+      theme = "robbyrussell";
+    };
   };
 }
-
