@@ -1,5 +1,5 @@
 
-{ config, pkgs, lib, ... }:
+{  self, pkgs, lib, inputs, ... }:
 
 {
   nix = {
@@ -11,6 +11,13 @@
       ];
     };
   };
+
+	environment.systemPackages = with pkgs; [
+    wget
+    git
+  ];
+
+	nixpkgs.config.allowUnfree = true;
 
 	system.stateVersion = "25.05";
 }

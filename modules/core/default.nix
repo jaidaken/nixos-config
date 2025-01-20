@@ -28,7 +28,6 @@
     #./system         # System settings, bootloader, hardware, and power management
     ./boot
 		./system
-    ./home-manager
 
     # =============================================================================
     # Network and Security

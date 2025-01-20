@@ -1,17 +1,3 @@
-{ config, pkgs, lib, ... }:
-
-{
-  # Define a user account
-  users.users.jaidaken = {
-    isNormalUser = true;                      # Mark as a normal user
-    description = "Jamie Hewitt";             # User's full name or description
-    extraGroups = [ "networkmanager" "wheel" ]; # Additional group memberships
-    packages = with pkgs; [];                 # Custom packages for the user (empty in this case)
-    shell = pkgs.zsh;
-  };
-}
-
-
 {
   pkgs,
   inputs,
@@ -26,14 +12,10 @@
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs username host; };
     users.${username} = {
-      imports =
-        if (host == "desktop") then
-          [ ./../home/default.desktop.nix ]
-        else
-          [ ./../home ];
+      imports = [ ./../home/default.desktop.nix ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
-      home.stateVersion = "24.05";
+      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
     };
   };
