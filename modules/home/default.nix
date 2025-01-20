@@ -1,4 +1,4 @@
-{inputs, username, host, ...}: 
+{inputs, username, host, ...}:
 
 {
   imports = [
@@ -24,7 +24,7 @@
     # =============================================================================
     #./system        # Scripts, monitoring, and system utilities
     #./security      # GnuPG, password management, encryption
-
+    ./zsh
     # =============================================================================
     # Network and Services
     # =============================================================================
