@@ -3,14 +3,24 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-	    url = "github:nix-community/home-manager";
-	    inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
       type = "git";
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
+    };
+
+    hypr-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprmag = {
+      url = "github:hyprwm/hyprmag";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -24,9 +34,9 @@
 
 	inputs.home-manager.nixosModules.default
 	{
-	  nix = {
-	    settings.experimental-features = [ "nix-command" "flakes" ];
-	  };
+    nix = {
+      settings.experimental-features = [ "nix-command" "flakes" ];
+    };
 	}
 
 	./modules
