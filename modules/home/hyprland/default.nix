@@ -1,52 +1,10 @@
-{ config, inputs, pkgs, ... }:
+{ inputs, ... }:
 {
-
-	programs.kitty.enable = true;
-
-  home.packages = (
-    with pkgs;[
-
-    # Core Utilities
-    #
-    # swww               # Dynamic wallpaper tool
-    # hyprpicker         # Color picker
-    # grim               # Screenshot utility
-    # slurp              # Screen area selector
-    # glib               # GLib utilities
-    wayland            # Wayland core
-    # direnv             # Environment manager
-
-    # #
-    # # Screenshot and Recording
-    # #
-    # inputs.hypr-contrib.packages.${pkgs.system}.grimblast # Enhanced screenshot
-    # wf-recorder        # Screen recorder
-
-    # #
-    # # Enhancement Tools
-    # #
-    # inputs.hyprmag.packages.${pkgs.system}.hyprmag # Screen magnifier
-    # wl-clip-persist    # Clipboard manager
-    # cliphist           # Clipboard history
-  ]
-	);
-  #
-  # Systemd Integration
-  #
-  # systemd.user.targets.hyprland-session = {
-  #   description = "Hyprland Session";
-  #   wants = [ "xdg-desktop-autostart.target" ];
-  # };
-
-  #
-  # Window Manager Configuration
-  #
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland = {
-      enable = true;
-      #hidpi = true;
-    };
-    systemd.enable = true;
-  };
+  imports = [
+    ./hyprland.nix
+    ./config.nix
+    ./hyprlock.nix
+    ./variables.nix
+    inputs.hyprland.homeManagerModules.default
+  ];
 }
