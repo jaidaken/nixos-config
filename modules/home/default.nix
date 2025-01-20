@@ -7,7 +7,7 @@
     # Desktop and UI
     ./hyprland
     # =============================================================================
-    ./desktop       # Window managers, bars, notifications, launchers
+    #./desktop       # Window managers, bars, notifications, launchers
 
     # =============================================================================
     # Applications
