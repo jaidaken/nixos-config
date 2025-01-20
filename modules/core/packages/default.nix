@@ -10,5 +10,7 @@
     wget
     gzip
   ];
+
+	programs.zsh.enable = true;
 }
 
