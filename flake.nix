@@ -15,12 +15,14 @@
 
     hypr-contrib = {
       url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+    };
+    
     hyprmag = {
-      url = "github:hyprwm/hyprmag";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:SIMULATAN/hyprmag";
     };
 
   };
