@@ -2,7 +2,7 @@
 # ==============================================================================
 # Hyprland Main Configuration
 # ==============================================================================
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   # =============================================================================
   # Required Packages
@@ -36,9 +36,10 @@
   # =============================================================================
   # Systemd Integration
   # =============================================================================
-  systemd.user.targets.hyprland-session.Unit.Wants = [
-    "xdg-desktop-autostart.target"
-  ];
+  systemd.user.targets.hyprland-session = {
+    description = "Hyprland Session";
+    wants = [ "xdg-desktop-autostart.target" ];
+  };
 
   # =============================================================================
   # Window Manager Configuration

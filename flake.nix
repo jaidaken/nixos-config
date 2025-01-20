@@ -19,22 +19,30 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+outputs =
+    { nixpkgs, self, ... }@inputs:
     let
+      username = "jaidaken";
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in {
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
+    in
+    {
       nixosConfigurations = {
-        hostname = pkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/default/default.nix
-            home-manager.nixosModules.home-manager
-          ];
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./hosts/default ];
+          specialArgs = {
+            host = "default";
+            inherit self inputs username;
+          };
         };
       };
-
-      settings.experimental-features = [ "nix-command" "flakes" ];
     };
 }
+
+
+
