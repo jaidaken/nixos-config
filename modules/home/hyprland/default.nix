@@ -3,7 +3,8 @@
 
 	programs.kitty.enable = true;
 
-  home.packages = with pkgs; [
+  home.packages = (
+    with pkgs;[
 
     # Core Utilities
     #
@@ -27,8 +28,8 @@
     # inputs.hyprmag.packages.${pkgs.system}.hyprmag # Screen magnifier
     # wl-clip-persist    # Clipboard manager
     # cliphist           # Clipboard history
-  ];
-
+  ]
+	);
   #
   # Systemd Integration
   #

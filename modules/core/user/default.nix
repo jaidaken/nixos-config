@@ -6,7 +6,8 @@
   ...
 }:
 {
-  imports = [ inputs.home-manager.nixosModules.home-manager ];
+  imports = [ inputs.home-manager.nixosModules.default ];
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -29,5 +30,6 @@
     ];
     shell = pkgs.zsh;
   };
+
   nix.settings.allowed-users = [ "${username}" ];
 }
