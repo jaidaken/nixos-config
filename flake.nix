@@ -19,33 +19,6 @@
 
   };
 
-# outputs =
-#     { nixpkgs, self, ... }@inputs:
-#     let
-#       username = "jaidaken";
-#       system = "x86_64-linux";
-#       pkgs = import nixpkgs {
-#         inherit system;
-#         config.allowUnfree = true;
-#       };
-#       lib = nixpkgs.lib;
-#     in
-#     {
-#       nixosConfigurations = {
-#         desktop = nixpkgs.lib.nixosSystem {
-#           inherit system;
-#           modules = [ ./hosts/nixos/default.nix ];
-#           specialArgs = {
-#             host = "nixos";
-#             inherit self inputs username;
-#           };
-#         };
-#       };
-#     };
-# }
-
-
-
   outputs = inputs@{ self, nixpkgs, ... }:
   let
       username = "jaidaken";
@@ -64,7 +37,7 @@
         inherit self inputs username;
       };
       modules = [
-        ./hosts/default/default.nix
+        ./hosts/nixos/default.nix
         inputs.home-manager.nixosModules.default
         ./modules
       ];
