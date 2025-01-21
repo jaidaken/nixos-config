@@ -3,7 +3,7 @@ let
   text = "rgb(251, 241, 199)";
 in
 {
-  environment.packages = [ pkgs.hyprlock ];
+  environment.systemPackages = [ pkgs.hyprlock ];
   xdg.configFile."hypr/hyprlock.conf".text = ''
     # BACKGROUND
     background {
