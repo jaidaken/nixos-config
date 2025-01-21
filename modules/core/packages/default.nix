@@ -9,6 +9,13 @@
     pciutils
     wget
     gzip
+    kitty
+    rofi-wayland
+    dolphin
+   #--------------------------------------------------------
+   # Browsers
+   #--------------------------------------------------------
+    chromium
   ];
 
   programs.zsh = {

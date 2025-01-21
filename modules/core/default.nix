@@ -29,7 +29,8 @@
     # =============================================================================
     #./system         # System settings, bootloader, hardware, and power management
     ./boot
-		./system
+    ./system
+    ./audio
 
     # =============================================================================
     # Network and Security
