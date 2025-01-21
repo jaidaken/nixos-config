@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   inputs,
   username,
@@ -6,18 +7,23 @@
   ...
 }:
 {
-  imports = [ inputs.home-manager.nixosModules.default ];
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    extraSpecialArgs = { inherit inputs username host; };
+    extraSpecialArgs = { 
+      inherit inputs; 
+      inherit username;
+      inherit host;
+      inherit pkgs;
+      };
     users.${username} = {
-      imports = [ ./../../home ];
+      imports = [ ../../home/default.nix ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
-      home.stateVersion = "25.05";
       programs.home-manager.enable = true;
+      home.stateVersion = "25.05";
     };
   };
 

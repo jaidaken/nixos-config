@@ -9,6 +9,8 @@
     pciutils
     wget
     gzip
+    dmidecode
+
     kitty
     rofi-wayland
     dolphin
@@ -16,6 +18,7 @@
    # Browsers
    #--------------------------------------------------------
     chromium
+    google-chrome
   ];
 
   programs.zsh = {

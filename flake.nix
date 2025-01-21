@@ -7,11 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
 
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
@@ -38,7 +34,7 @@
       };
       modules = [
         ./hosts/nixos/default.nix
-        ./modules
+        inputs.home-manager.nixosModules.default
       ];
     };
   };

@@ -20,8 +20,8 @@
     # Media and Desktop
     # =============================================================================
     #./desktop        # Wayland, X11, and font configuration
-		./hyprland
-		
+    ./hyprland
+    ./gtk		
     #./media          # Audio, PipeWire, and Bluetooth configuration
 
     # =============================================================================
