@@ -13,6 +13,8 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprmag.url = "github:SIMULATAN/hyprmag";
 
+    nixos-conf-editor.url = "github:snowfallorg/nixos-conf-editor";
+
   };
 
   outputs = inputs@{ self, nixpkgs, ... }:
