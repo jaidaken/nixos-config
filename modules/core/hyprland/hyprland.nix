@@ -18,7 +18,7 @@
     cliphist
     wf-recorder
     glib
-    wayland
+    # wayland
     direnv
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
