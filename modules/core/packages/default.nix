@@ -3,17 +3,17 @@
 {
   # System-wide packages
   environment.systemPackages = with pkgs; [
-    vim
+   # vim
     git
     curl
     pciutils
     wget
     gzip
     dmidecode
-
-    kitty
-    rofi-wayland
-    dolphin
+    killall
+    thefuck
+    zip
+    unzip
    #--------------------------------------------------------
    # Browsers
    #--------------------------------------------------------
@@ -21,12 +21,12 @@
     google-chrome
   ];
 
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "sudo" "docker" "kubectl" ];
-      theme = "robbyrussell";
-    };
-  };
+#  programs.zsh = {
+ #   enable = true;
+  #  ohMyZsh = {
+   #   enable = true;
+    #  plugins = [ "git" "sudo" "docker" "kubectl" ];
+     # theme = "robbyrussell";
+    #};
+  #};
 }

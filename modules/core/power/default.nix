@@ -2,9 +2,13 @@
 {
   environment.systemPackages = with pkgs; [
     acpi
+    brightnessctl
+    upower
   ];
   powerManagement.enable = true;
-
+  
+  services.upower.enable = true;
+  
   services.tlp = {
     enable = true;
     settings = {

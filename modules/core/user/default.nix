@@ -19,7 +19,10 @@
       inherit pkgs;
       };
     users.${username} = {
-      imports = [ ../../home/default.nix ];
+      imports = [ 
+        ../../home/default.nix 
+	inputs.catppuccin.homeManagerModules.catppuccin
+      ];
       home.username = "${username}";
       home.homeDirectory = "/home/${username}";
       programs.home-manager.enable = true;
@@ -37,5 +40,15 @@
     shell = pkgs.zsh;
   };
 
+  security.sudo.extraRules = 
+    [{  
+      users = [ "${username}" ];
+      commands = 
+      [{ 
+	 command = "ALL";
+         options= [ "NOPASSWD" ];
+      }];
+    }];
+  
   nix.settings.allowed-users = [ "${username}" ];
 }

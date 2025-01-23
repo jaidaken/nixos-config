@@ -6,7 +6,7 @@
 
       "$terminal" = "kitty";
       "$mod" = "SUPER";
-      "$menu" = "rofi -show run";
+      "$menu" = "wofi --show drun";
       "$fileManagaer" = "dolphin";
 
       env = [
@@ -17,8 +17,8 @@
       ];
 
       exec-once = [
-	"dbus-update-activation-environment --systemd --all"
-	#"hyprctl setcursor Bibata-Modern-Ice 14"	
+	"dbus-update-activation-environment --systemd --all &"
+        "waybar"
       ];
 
       input = {
@@ -46,8 +46,8 @@
      
 	border_size = 2;
 	
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        #"col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        #"col.inactive_border" = "rgba(595959aa)";
 
         resize_on_border = true;
 
@@ -60,14 +60,14 @@
         rounding = 8;
         rounding_power = 2;
         
-        active_opacity = 0.9;
+        active_opacity = 1.0;
 	inactive_opacity = 0.8;
 
 	shadow = {
 	  enabled = true;
 	  range = 4;
 	  render_power = 3;
-	  color = "rgba(1a1a1aee)";
+	  #color = "rgba(1a1a1aee)";
 	};
 
         blur = {
@@ -108,27 +108,109 @@
         ];
       };
 
+      dwindle = {
+	pseudotile = true;
+	preserve_split = true;
+      };
+
+      master = {
+	new_status = "master";
+      };
+
+      misc = {
+	force_default_wallpaper = -1;
+	disable_hyprland_logo = false;
+
+      };
+
       bind = [
 
-      "$mod, RETURN, exec, $terminal"
-      "$mod, Q, killactive"
-      "$mod, M, exit"
-      "$mod, SPACE, exec, $menu"
-      "$mod, V, togglefloating"
+	"$mod, RETURN, exec, $terminal"
+	"$mod, Q, killactive"
+	"$mod, M, exit"
+	"$mod, E, exec, $fileManager"
+      	"$mod, SPACE, exec, $menu"
+      	"$mod, V, togglefloating"
+
+	#dwindle
+	"$mod, P, pseudo"
+	"$mod, J, togglesplit"
+
+	#Focus	
+
+	"$mod, left, movefocus, l"
+	"$mod, right, movefocus, r"
+	"$mod, up, movefocus, u"
+	"$mod, down, movefocus, d"
 
 	#workspaces
-      "$mod, 1, workspace, 1"
-      "$mod, 2, workspace, 2"
-      "$mod, 3, workspace, 3"
-      "$mod, 4, workspace, 4"
-      "$mod, 5, workspace, 5"
-      "$mod, 6, workspace, 6"
-      "$mod, 7, workspace, 7"
-      "$mod, 8, workspace, 8"
-      "$mod, 9, workspace, 9"
-      "$mod, 0, workspace, 10"
+      	"$mod, 1, workspace, 1"
+      	"$mod, 2, workspace, 2"
+      	"$mod, 3, workspace, 3"
+      	"$mod, 4, workspace, 4"
+      	"$mod, 5, workspace, 5"
+      	"$mod, 6, workspace, 6"
+      	"$mod, 7, workspace, 7"
+      	"$mod, 8, workspace, 8"
+      	"$mod, 9, workspace, 9"
+      	"$mod, 0, workspace, 10"
 
+	#move active window to workspace
+	
+	"$mod SHIFT, 1, movetoworkspace, 1"
+	"$mod SHIFT, 2, movetoworkspace, 2"
+	"$mod SHIFT, 3, movetoworkspace, 3"
+	"$mod SHIFT, 4, movetoworkspace, 4"
+	"$mod SHIFT, 5, movetoworkspace, 5"
+	"$mod SHIFT, 6, movetoworkspace, 6"
+	"$mod SHIFT, 7, movetoworkspace, 7"
+	"$mod SHIFT, 8, movetoworkspace, 8"
+	"$mod SHIFT, 9, movetoworkspace, 9"
+	"$mod SHIFT, 0, movetoworkspace, 10"
 
+	# mouse scroll through workspaces
+
+	"$mod, mouse_down, workspace, e+1"
+	"$mod, mouse_up, workspace, e-1"
+      ];
+
+      bindm = [
+
+	# Mouse drag window resize
+
+	"$mod, mouse:272, movewindow"
+	"$mod, mouse:273, resizewindow"
+      ];
+
+      bindel = [
+	
+	",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+	",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+	",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+	",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+	",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
+	",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
+		
+      ];
+
+      bindl = [
+
+     	",XF86AudioNext, exec, playerctl next"
+     	",XF86AudioPrev, exec, playerctl previous"
+     	",XF86AudioPause, exec, playerctl play-pause"
+     	",XF86AudioPlay, exec, playerctl play-pause"
+
+      ];
+
+      windowrule = [
+   	"pin,rofi"
+      ];
+
+      windowrulev2 = [
+	"opacity 1.0 override 1.0 override 1.0 override, class:google-chrome"
+	"opacity 1.0 override 1.0 override 1.0 override, class:chromium-browser"
+	"suppressevent maximize, class:.*"
+	"nofocus,class:^$,title:^$,wayland:1,floating:1,fullscreen:0,pinned:0"
       ];
 
     };
