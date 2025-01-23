@@ -14,11 +14,13 @@
     thefuck
     zip
     unzip
+    direnv
    #--------------------------------------------------------
    # Browsers
    #--------------------------------------------------------
     chromium
     google-chrome
+    vscode-fhs
   ];
 
 #  programs.zsh = {

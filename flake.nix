@@ -10,6 +10,8 @@
 
     #obsidian-nvim.url = "github:epwalsh/obsidian.nvim";
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
